@@ -1,0 +1,252 @@
+/* ================================
+   🌞 LIGHT MODE (Default)
+================================ */
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #f8fafc;
+  color: #333;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.navbar {
+  background: linear-gradient(90deg, #0d6efd, #6610f2);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.navbar-brand {
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: #fff !important;
+}
+
+.table {
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: #fff;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.table-hover tbody tr:hover {
+  background-color: #f1f3f5;
+  transition: all 0.3s ease;
+}
+
+.btn {
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.1);
+}
+
+.card {
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+  background-color: #fff;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 1rem 2rem rgba(0,0,0,0.1);
+}
+
+footer {
+  margin-top: 50px;
+  text-align: center;
+  padding: 15px;
+  background-color: #f1f3f5;
+  border-radius: 10px;
+  color: #555;
+  font-size: 0.9rem;
+}
+
+.hover-shadow:hover {
+  box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
+  transform: translateY(-2px);
+  transition: all 0.3s ease;
+}
+
+.card {
+  cursor: pointer;
+}
+
+/* ================================
+   🌙 DARK MODE
+================================ */
+body.dark-mode {
+  background-color: #121212;
+  color: #eee;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body.dark-mode .navbar {
+  background: linear-gradient(90deg, #1e1e1e, #333);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.6);
+}
+
+body.dark-mode .card {
+  background-color: #1f1f1f;
+  color: #eee;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+}
+
+body.dark-mode .table {
+  background-color: #1f1f1f;
+  color: #eee;
+}
+
+body.dark-mode .table-hover tbody tr:hover {
+  background-color: #2a2a2a;
+}
+
+body.dark-mode footer {
+  background-color: #1f1f1f;
+  color: #ccc;
+  border-top: 1px solid #333;
+}
+
+body.dark-mode .btn-outline-light {
+  color: #eee;
+  border-color: #eee;
+}
+
+body.dark-mode .form-label {
+  color: #eee !important;
+}
+
+body.dark-mode .text-muted {
+  color: #bdbdbd !important;
+}
+
+/* ================================
+   🧩 FORM LABELS & INPUTS
+================================ */
+.form-label {
+  color: #333 !important;
+  font-weight: 500 !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  margin-bottom: 0.5rem !important;
+  display: block !important;
+}
+
+body.dark-mode .form-label {
+  color: #eee !important;
+}
+
+.custom-form-label {
+  color: #333 !important;
+  font-weight: 500 !important;
+  font-size: 1rem !important;
+  margin-bottom: 0.5rem !important;
+  display: block !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+body.dark-mode .custom-form-label {
+  color: #000 !important;
+  background-color: #fff !important;
+  padding: 2px 6px !important;
+  border-radius: 3px !important;
+}
+
+/* ================================
+   🧠 FORM INPUTS & SELECTS
+================================ */
+.form-control, .form-select {
+  border-radius: 8px !important;
+  border-color: #dee2e6 !important;
+  transition: all 0.2s ease;
+}
+
+.form-control:focus, .form-select:focus {
+  border-color: #6610f2 !important;
+  box-shadow: 0 0 0 0.25rem rgba(102,16,242,0.25) !important;
+}
+
+body.dark-mode .form-select,
+body.dark-mode .form-control {
+  background-color: #1f1f1f !important;
+  color: #eee !important;
+  border-color: #333 !important;
+}
+
+body.dark-mode .form-select option {
+  background-color: #1f1f1f !important;
+  color: #eee !important;
+}
+
+/* ================================
+   🏷️ BADGES & TEXT
+================================ */
+.badge {
+  font-size: 0.85rem;
+  font-weight: 500;
+  padding: 0.4em 0.7em;
+  border-radius: 6px;
+}
+
+body.dark-mode .badge {
+  color: #fff !important;
+}
+
+body.dark-mode .badge.bg-primary {
+  background-color: #0d6efd !important;
+}
+
+body.dark-mode .badge.bg-info {
+  background-color: #17a2b8 !important;
+  color: #fff !important;
+}
+
+/* ================================
+   ⚙️ ANIMATIONS & UTILITIES
+================================ */
+.transition {
+  transition: all 0.3s ease-in-out;
+}
+
+.fade-in {
+  animation: fadeIn 0.6s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Buttons gradient consistency */
+.btn-primary {
+  background: linear-gradient(90deg, #0d6efd, #6610f2);
+  border: none;
+}
+
+.btn-success {
+  background: linear-gradient(90deg, #28a745, #20c997);
+  border: none;
+}
+
+.btn-info {
+  background: linear-gradient(90deg, #0dcaf0, #0d6efd);
+  border: none;
+}
+
+.btn-outline-danger:hover {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+/* ================================
+   🖤 DARK MODE FOCUS STATES
+================================ */
+body.dark-mode .form-control:focus,
+body.dark-mode .form-select:focus {
+  border-color: #6610f2 !important;
+  box-shadow: 0 0 0 0.25rem rgba(102,16,242,0.3) !important;
+}

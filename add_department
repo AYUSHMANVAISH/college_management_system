@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-4">
+  <h2 class="mb-3">Add Department</h2>
+
+  <form method="POST" action="{{ url_for('add_department') }}" class="p-4 border rounded bg-light shadow-sm">
+    <div class="mb-3">
+      <label for="dept_name" class="form-label">Department Name</label>
+      <input type="text" class="form-control" id="dept_name" name="dept_name" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="hod" class="form-label">Head of Department (HOD)</label>
+      <input type="text" class="form-control" id="hod" name="hod" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="location" class="form-label">Location</label>
+      <input type="text" class="form-control" id="location" name="location" required>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Add Department</button>
+    <a href="{{ url_for('view_departments') }}" class="btn btn-secondary">Cancel</a>
+  </form>
+</div>
+{% endblock %}

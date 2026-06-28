@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-5">
+  <div class="card shadow p-4">
+    <h3 class="text-primary mb-3"><i class="fa fa-plus me-2"></i>Add Enrollment</h3>
+
+    <form method="POST">
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Student</label>
+          <select name="student_id" class="form-select" required>
+            <option value="">-- Select Student --</option>
+            {% for s in students %}
+            <option value="{{ s.student_id }}">{{ s.name }}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Course</label>
+          <select name="course_id" class="form-select" required>
+            <option value="">-- Select Course --</option>
+            {% for c in courses %}
+            <option value="{{ c.course_id }}">{{ c.course_name }}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Semester</label>
+          <input type="text" name="semester" class="form-control" placeholder="e.g. 5" required>
+        </div>
+
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Grade</label>
+          <input type="text" name="grade" class="form-control" placeholder="e.g. A" required>
+        </div>
+      </div>
+
+      <div class="text-end">
+        <a href="{{ url_for('view_enrollments') }}" class="btn btn-secondary">Cancel</a>
+        <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> Save</button>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}

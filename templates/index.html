@@ -1,0 +1,190 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container mt-4">
+  <div class="text-center mb-5">
+    <h2 class="fw-bold" style="color: #0d6efd;">📊 Dashboard Overview</h2>
+    <p class="text-muted">A quick glance at your student management statistics</p>
+  </div>
+
+  <div class="row text-center g-4">
+    <div class="col-md-4">
+      <a href="{{ url_for('view_students') }}" class="text-decoration-none text-reset">
+        <div class="card stats-card shadow-lg border-0 rounded-4">
+          <div class="card-body py-4">
+            <div class="icon-circle bg-primary text-white mb-3 mx-auto">
+              <i class="fa fa-user-graduate fa-2x"></i>
+            </div>
+            <h5 class="fw-semibold text-secondary">Total Students</h5>
+            <h2 class="fw-bold text-dark">{{ total_students|default('0') }}</h2>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <div class="col-md-4">
+      <a href="{{ url_for('view_enrollments') }}" class="text-decoration-none text-reset">
+        <div class="card stats-card shadow-lg border-0 rounded-4">
+          <div class="card-body py-4">
+            <div class="icon-circle bg-success text-white mb-3 mx-auto">
+              <i class="fa fa-clipboard-list fa-2x"></i>
+            </div>
+            <h5 class="fw-semibold text-secondary">Total Enrollments</h5>
+            <h2 class="fw-bold text-dark">{{ total_enrollments|default('0') }}</h2>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <div class="col-md-4">
+      <a href="{{ url_for('view_departments') }}" class="text-decoration-none text-reset">
+        <div class="card stats-card shadow-lg border-0 rounded-4">
+          <div class="card-body py-4">
+            <div class="icon-circle bg-info text-white mb-3 mx-auto">
+              <i class="fa fa-building fa-2x"></i>
+            </div>
+            <h5 class="fw-semibold text-secondary">Departments</h5>
+            <h2 class="fw-bold text-dark">{{ total_departments|default('0') }}</h2>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  {% if departments %}
+  <div class="mt-5">
+    <div class="card shadow-lg border-0 rounded-4">
+      <div class="card-header text-white text-center py-3"
+           style="background: linear-gradient(90deg, #6610f2, #0d6efd);">
+        <h4 class="mb-0 fw-semibold">👥 Students per Department</h4>
+      </div>
+      <div class="card-body bg-light" style="height: 400px;">
+        <canvas id="departmentChart"></canvas>
+      </div>
+    </div>
+  </div>
+  <script id="department-data" type="application/json">
+    {{ {'labels': department_labels, 'counts': department_counts} | tojson | safe }}
+  </script>
+  {% endif %}
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const chartCanvas = document.getElementById('departmentChart');
+  if (!chartCanvas) {
+    return;
+  }
+
+  const dataScript = document.getElementById('department-data');
+  let labels = [];
+  let data = [];
+
+  if (dataScript) {
+    try {
+      const parsed = JSON.parse(dataScript.textContent);
+      labels = Array.isArray(parsed.labels) ? parsed.labels : [];
+      data = Array.isArray(parsed.counts) ? parsed.counts : [];
+    } catch (err) {
+      console.error('Failed to parse department chart data:', err);
+    }
+  }
+
+  if (!labels.length || !data.length) {
+    return;
+  }
+
+  const ctx = chartCanvas.getContext('2d');
+
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: labels,
+      datasets: [{
+        label: 'Number of Students',
+        data: data,
+        backgroundColor: [
+          'rgba(13,110,253,0.8)',
+          'rgba(25,135,84,0.8)',
+          'rgba(111,66,193,0.8)',
+          'rgba(255,193,7,0.8)',
+          'rgba(220,53,69,0.8)'
+        ],
+        borderColor: 'rgba(255,255,255,0.9)',
+        borderWidth: 1,
+        borderRadius: 5
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          backgroundColor: '#343a40',
+          titleColor: '#fff',
+          bodyColor: '#fff'
+        }
+      },
+      scales: {
+        y: {
+          beginAtZero: true,
+          ticks: {
+            color: '#000',
+            precision: 0
+          }
+        },
+        x: {
+          ticks: {
+            color: '#000'
+          }
+        }
+      }
+    }
+  });
+});
+</script>
+
+<style>
+.stats-card {
+  transition: all 0.3s ease;
+  background-color: #ffffff;
+  border-top: 4px solid transparent;
+}
+
+.stats-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1);
+  border-top: 4px solid #0d6efd;
+}
+
+.icon-circle {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  transition: all 0.3s ease;
+}
+
+.icon-circle:hover {
+  transform: scale(1.1);
+}
+
+.dark-mode .card {
+  background-color: #1e1e1e !important;
+  color: #f8f9fa;
+}
+
+.dark-mode h5, .dark-mode h2 {
+  color: #f8f9fa;
+}
+
+.dark-mode .card-header {
+  background: linear-gradient(90deg, #212529, #343a40) !important;
+}
+</style>
+
+{% endblock %}

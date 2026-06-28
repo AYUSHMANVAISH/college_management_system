@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container mt-5">
+  <div class="card shadow-lg border-0 rounded-4 mx-auto" style="max-width: 550px;">
+    <div class="card-header bg-gradient text-white text-center py-3" 
+         style="background: linear-gradient(90deg, #007bff, #6610f2);">
+      <h3 class="mb-0 fw-bold">➕ Add New Course</h3>
+    </div>
+
+    <div class="card-body bg-light p-4">
+      <form method="POST">
+
+        <div class="form-group mb-3">
+          <label class="form-label fw-semibold">Course Name</label>
+          <input type="text" class="form-control shadow-sm" name="course_name" placeholder="Enter course title" required>
+        </div>
+
+        <div class="form-group mb-4">
+          <label class="form-label fw-semibold">Credits</label>
+          <input type="number" class="form-control shadow-sm" name="credits" min="1" max="10" placeholder="e.g., 3" required>
+        </div>
+
+        <div class="d-flex justify-content-between">
+          <button type="submit" class="btn btn-success w-50 me-2">💾 Save</button>
+          <a href="{{ url_for('view_courses') }}" class="btn btn-outline-secondary w-50">Cancel</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<style>
+  .form-control:focus {
+    border-color: #6610f2;
+    box-shadow: 0 0 0 0.25rem rgba(102,16,242,.25);
+  }
+
+  .btn-success {
+    background: linear-gradient(90deg, #28a745, #20c997);
+    border: none;
+    transition: all 0.3s ease;
+  }
+
+  .btn-success:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0.5rem 1rem rgba(40,167,69,0.3);
+  }
+
+  .btn-outline-secondary:hover {
+    background-color: #e9ecef;
+  }
+</style>
+
+{% endblock %}
+

@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container mt-5">
+
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="fw-bold text-primary">
+      <i class="fa fa-chalkboard-teacher me-2"></i>Faculty
+    </h2>
+    <a href="{{ url_for('add_faculty') }}" class="btn btn-success shadow-sm">
+      <i class="fa fa-plus"></i> Add Faculty
+    </a>
+  </div>
+
+  <div class="table-responsive shadow-sm rounded">
+    <table class="table table-striped table-hover align-middle">
+      <thead class="table-primary text-center">
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Designation</th>
+          <th>Department</th>
+          <th>Email</th>
+          <th>Salary</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for f in faculty %}
+        <tr class="text-center">
+          <td>{{ f.faculty_id }}</td>
+          <td>{{ f.name }}</td>
+          <td>{{ f.designation }}</td>
+          <td>{{ f.dept_name }}</td>
+          <td>{{ f.email }}</td>
+          <td>₹{{ "%.2f"|format(f.salary) }}</td>
+          <td>
+            <a href="{{ url_for('edit_faculty', id=f.faculty_id) }}" 
+               class="btn btn-sm btn-outline-primary me-1" title="Edit">
+              <i class="fa fa-pen"></i>
+            </a>
+            <a href="{{ url_for('delete_faculty', id=f.faculty_id) }}" 
+               class="btn btn-sm btn-outline-danger" 
+               title="Delete"
+               onclick="return confirm('Are you sure you want to delete this faculty?');">
+              <i class="fa fa-trash"></i>
+            </a>
+          </td>
+        </tr>
+        {% else %}
+        <tr>
+          <td colspan="7" class="text-center text-muted py-4">
+            <i class="fa fa-info-circle me-2"></i>No faculty records found.
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+<style>
+  .table-hover tbody tr:hover {
+    background-color: #f8f9fa;
+    transition: background-color 0.2s ease;
+  }
+</style>
+
+{% endblock %}

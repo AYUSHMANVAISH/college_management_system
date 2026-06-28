@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block content %}
+<h2 class="mb-4 text-center">📚 All Courses</h2>
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <span class="text-muted">Total Courses: {{ courses|length }}</span>
+  <a href="{{ url_for('add_course') }}" class="btn btn-success btn-sm">
+    <i class="fa fa-plus me-1"></i> Add Course
+  </a>
+</div>
+
+<div class="table-responsive shadow-sm rounded-3">
+  <table class="table table-striped table-bordered align-middle text-center mb-0">
+    <thead class="table-dark">
+      <tr>
+        <th>ID</th>
+        <th>Course Name</th>
+        <th>Credits</th>
+        <th>Department</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% if courses %}
+        {% for course in courses %}
+        <tr class="hover-shadow">
+          <td>{{ course.course_id }}</td>
+          <td>{{ course.course_name }}</td>
+          <td>
+            <span class="badge bg-primary">
+              {{ course.credits }} Credit{{ 's' if course.credits > 1 else '' }}
+            </span>
+          </td>
+          <td>{{ course.dept_name or '—' }}</td>
+          <td>
+            <button class="btn btn-sm btn-outline-danger" disabled>
+              <i class="fa fa-trash"></i> Delete
+            </button>
+          </td>
+        </tr>
+        {% endfor %}
+      {% else %}
+        <tr><td colspan="5" class="text-muted">No courses found.</td></tr>
+      {% endif %}
+    </tbody>
+  </table>
+</div>
+
+<style>
+.hover-shadow:hover {
+  box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
+  transform: translateY(-2px);
+  transition: all 0.3s ease;
+}
+.table th, .table td {
+  vertical-align: middle;
+}
+</style>
+{% endblock %}
+

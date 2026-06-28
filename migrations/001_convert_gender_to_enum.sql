@@ -1,0 +1,3 @@
+-- MIGRATION REMOVED: User requested undo of migration.
+-- Original migration was: convert gender to ENUM('Male','Female','Other','Unknown')
+-- This file has been replaced to record that the migration was undone in the workspace.
