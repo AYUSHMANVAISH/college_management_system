@@ -41,4 +41,4 @@ Machine Learning-based Intrusion Detection System for detecting network anomalie
 
 GitHub: https://github.com/AYUSHMANVAISH
 
-LinkedIn: https://linkedin.com/in/ayushman-vaish
+LinkedIn: https://www.linkedin.com/in/ayushman-vaish-1bb69441a
